@@ -10,10 +10,10 @@ namespace CountForCountry
 {
     class Program
     {
-        //TODO: сменить на относительный путь
-        static readonly string textFile = @"C:\Users\Egor\source\repos\CountForCountry\CountForCountry\Users.txt";
 
-        struct user
+        static readonly string textFile = Path.Combine(Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.FullName, "Users.txt");
+
+        struct User
         {
             public int id;
             public int count;
@@ -30,7 +30,7 @@ namespace CountForCountry
         static void Main(string[] args)
          
         {   
-            List<user> users = new List<user>();
+            List<User> Users = new List<User>();
 
             using (StreamReader file = new StreamReader(textFile))
             {
@@ -43,7 +43,7 @@ namespace CountForCountry
                         string[] words;
                         words = line.Split(';');
 
-                        users.Add(new user()
+                        Users.Add(new User()
                         {
                             id = Convert.ToInt32(words[0]),
                             count = Convert.ToInt32(words[1]),
@@ -55,8 +55,8 @@ namespace CountForCountry
             }
 
             //Юзать LINQ это явно не "без дополнительных алгоритмов", но это самый быстрый метод в плане написания
-            //Над вариантом на одних массивах и циклах подумаю попозже
-            List<ResultCountry> results = users.GroupBy(t => t.country)
+            //Над вариантом на одних массивах подумаю попозже
+            List<ResultCountry> results = Users.GroupBy(t => t.country)
                 .Select(c => new ResultCountry
                 {
                     country = c.First().country,
