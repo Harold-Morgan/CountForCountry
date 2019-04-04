@@ -1,0 +1,11 @@
+11231;6;Russia
+11232;1;Ukraine
+1122;1;Ukraine
+1122;1;Ukraine
+1121;1;Slovakia
+1122;5;Slovakia
+абырвалг
+
+1122;1;Ukraine
+11232;5;Russia
+1;6;Russia
